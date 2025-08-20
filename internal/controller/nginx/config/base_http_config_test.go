@@ -136,10 +136,22 @@ func TestExecuteBaseHttp_NginxReadinessProbePort(t *testing.T) {
 			expectedListen: "listen 8081;",
 		},
 		{
+			name:           "default nginx readiness probe port on ipv6",
+			conf:           defaultConfig,
+			expectedPort:   "8081",
+			expectedListen: "listen [::]:8081;",
+		},
+		{
 			name:           "custom nginx readiness probe 9090",
 			conf:           customConfig,
 			expectedPort:   "9090",
 			expectedListen: "listen 9090;",
+		},
+		{
+			name:           "custom nginx readiness probe 9090 on ipv6",
+			conf:           customConfig,
+			expectedPort:   "9090",
+			expectedListen: "listen [::]:9090;",
 		},
 	}
 
